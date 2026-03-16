@@ -1,6 +1,6 @@
 {
   "name": "auto-skill-update",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Automatically detect and update outdated Claude Code skills by analyzing your codebase, fetching latest library docs, and rewriting skills to match current patterns.",
   "author": {
     "name": "Snowtumb"
