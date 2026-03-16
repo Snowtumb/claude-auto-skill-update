@@ -231,4 +231,4 @@ auto-skill-update/
 
 ## License
 
-[MIT](LICENSE) — Ilia Lopata
+[MIT](LICENSE) — Snowtumb

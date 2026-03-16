@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Automatically detect and update outdated Claude Code skills by analyzing your codebase, fetching latest library docs, and rewriting skills to match current patterns.",
   "author": {
-    "name": "Ilia Lopata"
+    "name": "Snowtumb"
   },
   "repository": {
     "type": "git",
