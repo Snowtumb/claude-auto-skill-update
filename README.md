@@ -61,15 +61,30 @@ Proceed with update? (yes/no)
 
 ## Installation
 
+### From GitHub
+
+1. Add the repo as a plugin marketplace:
+   ```bash
+   /plugin marketplace add Snowtumb/claude-auto-skill-update
+   ```
+
+2. Install the plugin:
+   ```bash
+   /plugin install auto-skill-update@Snowtumb-claude-auto-skill-update
+   ```
+
+3. Reload plugins:
+   ```bash
+   /reload-plugins
+   ```
+
+### From a local directory (for development)
+
 ```bash
-claude plugins add auto-skill-update
+claude --plugin-dir /path/to/claude-auto-skill-update
 ```
 
-Or install from a local directory:
-
-```bash
-claude plugins add /path/to/auto-skill-update
-```
+> **Note:** Requires Claude Code version 1.0.33 or later. Check with `claude --version`.
 
 ## Usage
 
