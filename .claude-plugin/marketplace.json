@@ -13,7 +13,7 @@
       "author": {
         "name": "Snowtumb"
       },
-      "source": ".",
+      "source": "./",
       "category": "development"
     }
   ]
