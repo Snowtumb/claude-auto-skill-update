@@ -1,0 +1,20 @@
+{
+  "name": "auto-skill-update",
+  "version": "1.0.0",
+  "description": "Automatically detect and update outdated Claude Code skills by analyzing your codebase, fetching latest library docs, and rewriting skills to match current patterns.",
+  "author": {
+    "name": "Ilia Lopata"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Snowtumb/claude-auto-skill-update"
+  },
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "skills",
+    "auto-update",
+    "plugin",
+    "developer-tools"
+  ]
+}
