@@ -5,10 +5,7 @@
   "author": {
     "name": "Snowtumb"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Snowtumb/claude-auto-skill-update"
-  },
+  "repository": "https://github.com/Snowtumb/claude-auto-skill-update",
   "license": "MIT",
   "keywords": [
     "claude-code",

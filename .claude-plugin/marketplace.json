@@ -1,0 +1,20 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "claude-auto-skill-update",
+  "description": "Marketplace for the AutoSkillUpdate plugin — automatically detect and update outdated Claude Code skills.",
+  "owner": {
+    "name": "Snowtumb"
+  },
+  "plugins": [
+    {
+      "name": "auto-skill-update",
+      "description": "Automatically detect and update outdated Claude Code skills by analyzing your codebase, fetching latest library docs, and rewriting skills to match current patterns.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Snowtumb"
+      },
+      "source": ".",
+      "category": "development"
+    }
+  ]
+}
