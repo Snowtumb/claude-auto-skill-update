@@ -181,14 +181,12 @@ Flags can combine: `/updateskill --all --dry-run`
 
 ## Skill Locations Searched
 
-AutoSkillUpdate searches these locations for skills:
+AutoSkillUpdate searches your own skill files only — installed plugin skills are maintained by their authors and are not scanned.
 
 | Location | Description |
 |----------|-------------|
 | `.claude/commands/**/*.md` | Project-level skills |
 | `~/.claude/commands/**/*.md` | User-level skills |
-| `~/.claude/plugins/**/skills/**/*.md` | Installed plugin skills |
-| `.claude/plugins/**/skills/**/*.md` | Project plugin skills |
 
 ## Contributing
 

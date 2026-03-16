@@ -25,12 +25,10 @@ If arguments are ambiguous, ask the user to clarify.
 
 ## Step 2: Locate Skill Files
 
-Search for skill files across all standard locations. Note: `~` does not expand in Glob — resolve the home directory first using Bash (`echo $HOME`) and use the absolute path.
+Search for the user's own skill files only. Do NOT scan installed plugin skills — those are maintained by plugin authors and can number in the dozens. Note: `~` does not expand in Glob — resolve the home directory first using Bash (`echo $HOME`) and use the absolute path.
 
 1. **Project-level skills:** Use Glob for `.claude/commands/**/*.md` in the current working directory
 2. **User-level skills:** Use Glob for `$HOME/.claude/commands/**/*.md` (resolve `$HOME` to absolute path first)
-3. **Installed plugins:** Use Glob for `$HOME/.claude/plugins/**/skills/**/*.md` (resolve `$HOME` to absolute path first)
-4. **Project plugins:** Use Glob for `.claude/plugins/**/skills/**/*.md` in the current working directory
 
 For each found skill file:
 - Read its frontmatter to extract `name` and `description`
