@@ -27,8 +27,8 @@ If arguments are ambiguous, ask the user to clarify.
 
 Search for the user's own skill files only. Do NOT scan installed plugin skills — those are maintained by plugin authors and can number in the dozens. Note: `~` does not expand in Glob — resolve the home directory first using Bash (`echo $HOME`) and use the absolute path.
 
-1. **Project-level skills:** Use Glob for `.claude/commands/**/*.md` in the current working directory
-2. **User-level skills:** Use Glob for `$HOME/.claude/commands/**/*.md` (resolve `$HOME` to absolute path first)
+1. **Project-level skills:** Use Glob for `.claude/skills/**/*.md` in the current working directory
+2. **User-level skills:** Use Glob for `$HOME/.claude/skills/**/*.md` (resolve `$HOME` to absolute path first)
 
 For each found skill file:
 - Read its frontmatter to extract `name` and `description`
@@ -224,7 +224,7 @@ When processing multiple skills (`--all`):
 
 ## Error Handling
 
-- **No skills found:** "No Claude Code skills found in any standard location. Skills are typically stored in `.claude/commands/` or in installed plugins."
+- **No skills found:** "No Claude Code skills found in any standard location. Skills are typically stored in `.claude/skills/` or in installed plugins."
 - **Skill file unreadable:** "Could not read [path]. Check file permissions."
 - **No Context7 available:** "Context7 MCP tools not available — skipping documentation fetch. Analysis will be based on codebase scanning only."
 - **Agent failure:** If either agent fails, report what succeeded and what failed. The update can still proceed with partial information (e.g., codebase analysis without doc updates, or vice versa).

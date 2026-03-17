@@ -185,8 +185,8 @@ AutoSkillUpdate searches your own skill files only — installed plugin skills a
 
 | Location | Description |
 |----------|-------------|
-| `.claude/commands/**/*.md` | Project-level skills |
-| `~/.claude/commands/**/*.md` | User-level skills |
+| `.claude/skills/**/*.md` | Project-level skills |
+| `~/.claude/skills/**/*.md` | User-level skills |
 
 ## Contributing
 
