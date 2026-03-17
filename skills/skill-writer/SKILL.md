@@ -1,7 +1,7 @@
 ---
 name: skill-writer
 description: Rewrites a Claude Code skill file based on a drift analysis report and latest documentation. Used internally by the updateskill plugin. Do not invoke directly.
-version: 1.0.1
+version: 1.0.2
 ---
 
 # Skill Writer
