@@ -1,7 +1,7 @@
 ---
 name: project-skill-writer
 description: Rewrites a third-party skill to be fully project-specific, injecting the project's conventions, architecture, file paths, naming patterns, and latest documentation. Used internally by the fitmyproject plugin. Do not invoke directly.
-version: 1.0.2
+version: 1.0.3
 ---
 
 # Project Skill Writer

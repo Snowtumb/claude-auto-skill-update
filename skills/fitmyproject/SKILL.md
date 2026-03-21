@@ -1,7 +1,7 @@
 ---
 name: fitmyproject
 description: Adapt any third-party skill to your specific project. Use when the user says "fit my project", "fitmyproject", "customize skill", "adapt skill", "make skill project-specific", or "/fitmyproject". Accepts an installed plugin skill name, file path, or GitHub URL.
-version: 1.0.2
+version: 1.0.3
 ---
 
 # FitMyProject

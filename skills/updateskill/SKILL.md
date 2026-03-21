@@ -1,7 +1,7 @@
 ---
 name: updateskill
 description: Automatically detect and update outdated Claude Code skills. Use when the user says "update skill", "updateskill", "refresh skill", "skill is outdated", "sync skills", or "/updateskill". Supports targeted mode (/updateskill front-end), interactive mode (/updateskill), batch mode (/updateskill --all), and dry-run mode (/updateskill --dry-run).
-version: 1.0.2
+version: 1.0.3
 ---
 
 # AutoSkillUpdate

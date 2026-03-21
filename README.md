@@ -3,7 +3,7 @@
 **Automatically detect and update outdated Claude Code skills — and adapt third-party skills to your specific project.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.0.2-green.svg)](.claude-plugin/plugin.json)
+[![Version](https://img.shields.io/badge/version-1.0.3-green.svg)](.claude-plugin/plugin.json)
 
 ---
 
