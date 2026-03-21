@@ -25,6 +25,8 @@ sed -i '' "s/\"version\": \"$CURRENT\"/\"version\": \"$NEW\"/" .claude-plugin/pl
 sed -i '' "s/\"version\": \"$CURRENT\"/\"version\": \"$NEW\"/" .claude-plugin/marketplace.json
 sed -i '' "s/version: $CURRENT/version: $NEW/" skills/updateskill/SKILL.md
 sed -i '' "s/version: $CURRENT/version: $NEW/" skills/skill-writer/SKILL.md
+sed -i '' "s/version: $CURRENT/version: $NEW/" skills/fitmyproject/SKILL.md
+sed -i '' "s/version: $CURRENT/version: $NEW/" skills/project-skill-writer/SKILL.md
 sed -i '' "s/version-$CURRENT/version-$NEW/" README.md
 
 git add -A

@@ -1,7 +1,7 @@
 {
   "name": "auto-skill-update",
   "version": "1.0.2",
-  "description": "Automatically detect and update outdated Claude Code skills by analyzing your codebase, fetching latest library docs, and rewriting skills to match current patterns.",
+  "description": "Automatically detect and update outdated Claude Code skills, and adapt third-party skills to your specific project. Analyzes your codebase, fetches latest library docs, and rewrites skills to match current patterns.",
   "author": {
     "name": "Snowtumb"
   },
@@ -11,6 +11,8 @@
     "claude-code",
     "skills",
     "auto-update",
+    "skill-adaptation",
+    "fitmyproject",
     "plugin",
     "developer-tools"
   ]

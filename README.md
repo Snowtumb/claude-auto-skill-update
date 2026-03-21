@@ -1,6 +1,6 @@
 # AutoSkillUpdate
 
-**Automatically detect and update outdated Claude Code skills.**
+**Automatically detect and update outdated Claude Code skills — and adapt third-party skills to your specific project.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-1.0.2-green.svg)](.claude-plugin/plugin.json)
@@ -51,10 +51,22 @@ Proceed with update? (yes/no)
 
 ## Features
 
+### Skill Update (`/updateskill`)
+
 - **Targeted mode** — Update a specific skill: `/updateskill <skill-name>`
 - **Interactive mode** — List all skills and choose: `/updateskill`
 - **Batch mode** — Update all skills at once: `/updateskill --all`
 - **Dry-run mode** — See the report without making changes: `/updateskill --dry-run`
+
+### Skill Adaptation (`/fitmyproject`)
+
+- **Adapt any skill** — Works with installed plugin skills, local file paths, or GitHub URLs
+- **Deep project scanning** — Extracts conventions, architecture, file paths, naming patterns, dependency versions
+- **Fully project-specific output** — No generic advice; every assertion is tailored to your codebase
+- **Choose save location** — Save to project skills, user skills, or a custom path
+
+### Shared
+
 - **Context7 integration** — Fetches latest library docs for accurate updates
 - **Evidence-based** — Every finding includes file paths and line references
 - **Safe by default** — Never writes changes without explicit user confirmation
@@ -117,6 +129,21 @@ Processes every skill sequentially with a combined summary at the end.
 
 Generates the drift report but never writes changes. Useful for seeing what's outdated without committing to an update.
 
+### Adapt a third-party skill to your project
+
+```bash
+/fitmyproject react
+```
+
+Finds the installed "react" skill, deep-scans your project, and rewrites the skill with your conventions, file paths, library versions, and architecture patterns. You choose where to save and confirm before anything is written.
+
+```bash
+/fitmyproject ./path/to/SKILL.md
+/fitmyproject https://github.com/user/repo/blob/main/skills/some-skill/SKILL.md
+```
+
+Also works with local file paths and GitHub URLs.
+
 ## How It Works
 
 ```
@@ -148,14 +175,49 @@ Generates the drift report but never writes changes. Useful for seeing what's ou
 └─────────────────────────────────────────────────┘
 ```
 
+### `/fitmyproject` Pipeline
+
+```
+┌─────────────────────────────────────────────────┐
+│                 /fitmyproject                     │
+│              (Orchestrator Skill)                │
+│                                                  │
+│  1. Parse input (plugin name / file / URL)       │
+│  2. Resolve & read source skill                  │
+│  3. Analyze skill (domain, libraries, patterns)  │
+│                                                  │
+│  4. Dispatch agents in parallel:                 │
+│     ┌─────────────────┐  ┌────────────────────┐  │
+│     │ project-scanner │  │   doc-fetcher      │  │
+│     │                 │  │   (reused)         │  │
+│     │ Deep-scans      │  │                    │  │
+│     │ project:        │  │ Fetches docs via   │  │
+│     │ • Conventions   │  │ Context7:          │  │
+│     │ • Architecture  │  │ • Best practices   │  │
+│     │ • File paths    │  │ • Breaking changes │  │
+│     │ • Dependencies  │  │ • New APIs         │  │
+│     └────────┬────────┘  └────────┬───────────┘  │
+│              │                    │               │
+│              └────────┬───────────┘               │
+│                       │                           │
+│  5. Merge → Adaptation plan                      │
+│  6. Confirm + choose save location               │
+│  7. Invoke project-skill-writer → New SKILL.md   │
+│  8. Preview → Write to chosen location           │
+└─────────────────────────────────────────────────┘
+```
+
 ### Components
 
 | Component | Type | Role |
 |-----------|------|------|
-| `updateskill` | Skill | User-facing entry point. Orchestrates the full workflow. |
-| `skill-analyzer` | Agent | Scans the codebase for drift. Reads CLAUDE.md, devlogs, source files, and dependencies. Produces a categorized drift report. |
-| `doc-fetcher` | Agent | Fetches latest library documentation via Context7 MCP tools. Finds breaking changes, new patterns, and deprecated APIs. |
+| `updateskill` | Skill | Orchestrates the drift-detection workflow for `/updateskill`. |
+| `skill-analyzer` | Agent | Scans the codebase for drift. Produces a categorized drift report. |
+| `doc-fetcher` | Agent | Fetches latest library documentation via Context7 MCP tools. Shared by both pipelines. |
 | `skill-writer` | Skill | Rewrites the skill file. Preserves identity and style while updating content. |
+| `fitmyproject` | Skill | Orchestrates the skill-adaptation workflow for `/fitmyproject`. |
+| `project-scanner` | Agent | Deep-scans the project to extract its identity — conventions, architecture, file paths, patterns. |
+| `project-skill-writer` | Skill | Rewrites a third-party skill to be fully project-specific. Creates new identity. |
 
 ### Drift Categories
 
@@ -168,6 +230,8 @@ Generates the drift report but never writes changes. Useful for seeing what's ou
 
 ## Command Reference
 
+### `/updateskill`
+
 | Command | Description |
 |---------|-------------|
 | `/updateskill` | Interactive mode — list all skills, choose which to update |
@@ -178,6 +242,15 @@ Generates the drift report but never writes changes. Useful for seeing what's ou
 | `/updateskill --all --dry-run` | Batch dry-run |
 
 Flags can combine: `/updateskill --all --dry-run`
+
+### `/fitmyproject`
+
+| Command | Description |
+|---------|-------------|
+| `/fitmyproject` | Interactive — ask what skill to adapt |
+| `/fitmyproject <name>` | Adapt an installed plugin skill by name |
+| `/fitmyproject <file-path>` | Adapt a skill from a local `.md` file |
+| `/fitmyproject <github-url>` | Adapt a skill from a GitHub URL |
 
 ## Skill Locations Searched
 
@@ -215,17 +288,24 @@ Contributions are welcome! This is an open-source project under the MIT license.
 ```
 auto-skill-update/
 ├── .claude-plugin/
-│   └── plugin.json              # Plugin manifest
+│   ├── plugin.json              # Plugin manifest
+│   └── marketplace.json         # Marketplace wrapper
 ├── skills/
 │   ├── updateskill/
-│   │   └── SKILL.md             # Main orchestrator skill
-│   └── skill-writer/
-│       └── SKILL.md             # Skill rewriting logic
+│   │   └── SKILL.md             # /updateskill orchestrator
+│   ├── skill-writer/
+│   │   └── SKILL.md             # Drift-based skill rewriter
+│   ├── fitmyproject/
+│   │   └── SKILL.md             # /fitmyproject orchestrator
+│   └── project-skill-writer/
+│       └── SKILL.md             # Project-specific skill rewriter
 ├── agents/
 │   ├── skill-analyzer.md        # Codebase drift detection agent
-│   └── doc-fetcher.md           # Documentation fetching agent
+│   ├── doc-fetcher.md           # Documentation fetching agent (shared)
+│   └── project-scanner.md       # Project identity extraction agent
 ├── README.md
 ├── Devlog.md
+├── bump.sh                      # Version management script
 └── LICENSE
 ```
 
